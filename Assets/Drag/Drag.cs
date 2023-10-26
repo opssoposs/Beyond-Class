@@ -6,15 +6,10 @@ using UnityEngine.EventSystems;
 public class Drag : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHandler
 {
     public static Vector2 DefaultPos;
-    public static Vector2 EndPos;
-    [SerializeField] public Transform DropBox;
-    [SerializeField] bool Drop = false;
+    public Transform Box;
 
     void IBeginDragHandler.OnBeginDrag(PointerEventData eventData)
     {
-
-        EndPos = DropBox.transform.position;
-
         DefaultPos = this.transform.position;
     }
 
@@ -28,22 +23,18 @@ public class Drag : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHand
 
     void IEndDragHandler.OnEndDrag(PointerEventData eventData)
     {
-        if(Drop == false)
-        {
-            Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            this.transform.position = DefaultPos;
-        }
-        else if(Drop == true)
-        {
-            
-            this.transform.position = EndPos;
-        }
-        
+        Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-    }
-    void OnTriggerEnter2D(Collider2D collision)
-    {
-        Debug.Log("ででででででででででででででででででででででででででででででででででで");
-        Drop = true;
+        // 幻鉦 Box 殿益研 亜遭 神崎詮闘人 中宜廃 井酔
+        Collider2D[] colliders = Physics2D.OverlapPointAll(mousePos);
+        foreach (Collider2D collider in colliders)
+        {
+            if (collider.CompareTag("Box"))
+            {
+                // Box 殿益研 亜遭 神崎詮闘人 中宜廃 井酔 背雁 神崎詮闘税 是帖稽 戚疑
+                this.transform.position = Box.transform.position;
+                return; // 戚耕 Box人 中宜廃 井酔拭澗 希 戚雌 伊紫拝 琶推亜 蒸生糠稽 曽戟
+            }
+        }
     }
 }
